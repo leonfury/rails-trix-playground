@@ -66,3 +66,4 @@ gem 'trix'
 gem "letter_opener", :group => :development
 gem 'rails_12factor', group: :production
 gem 'sidekiq'
+gem "aws-sdk-s3", require: false
