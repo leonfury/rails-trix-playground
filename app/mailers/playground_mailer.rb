@@ -6,8 +6,8 @@ class PlaygroundMailer < ApplicationMailer
         end
 
         @content = content
-        mail(to: email, subject: 'Your mail')
+        mail(to: email, subject: content.subject, cc: "adamleonlim@gmail.com")
 
-        content.files.purge
+        # content.files.purge #delete active storage files
     end
 end
