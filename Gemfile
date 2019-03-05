@@ -64,3 +64,5 @@ gem 'figaro'
 gem 'trix'
 
 gem "letter_opener", :group => :development
+gem 'rails_12factor', group: :production
+gem 'sidekiq'
