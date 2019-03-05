@@ -24,29 +24,27 @@ Active Storage Production Configuration
 https://devcenter.heroku.com/articles/active-storage-on-heroku?preview=1
 
 # Setting up
-terminal -> rails g scaffold Content body:text subject:text receipient:text attachment:text
-\
-terminal -> rails g mailer Playground
-\
-terminal -> rails g job Playground
+Run on terminal
+
+    rails g scaffold Content body:text subject:text receipient:text attachment:text
+    rails g mailer Playground
+    rails g job Playground
 
 # Gem & Dependencies
-ruby '2.5.3'
-\
-gem 'rails', '~> 5.2.2'
-\
-gem 'trix'
-\
-terminal -> bundle i
+
+    ruby '2.5.3'
+    gem 'rails', '~> 5.2.2'
+    gem 'trix'
+    terminal -> bundle i
 
 # Trix Setup
 Add to app/assets/stylesheets/application.css
-\
-//*= require trix
+
+    //*= require trix
 
 Add to app/assets/javascripts/application.js
-\
-//= require trix
+
+    //= require trix
 
 # Creation Setup
 See viewfile contents#_form
@@ -61,43 +59,68 @@ where input is the id of the form input field
 See viewfile contens#show
 \
 Add "sanitize" render the rich text body to html view, like so:
-\
-<%= sanitize @content.body %>
+
+    <%= sanitize @content.body %>
 
 # Setting up mailer
 
 
 # Setting up mailer attachment with active storage
-terminal -> rails active_storage:install
-\
-terminal -> rails db:migrate
+Run on terminal
+
+    rails active_storage:install
+    rails db:migrate
 
 Add to model file
-\
-has_one_attached :name OR has_many_attached :name
-\
+
+    has_one_attached :name
+    OR 
+    has_many_attached :name
+
 where name can be anything
 \
 see content.rb
 
 Add to view file for file uploading
-\
-<%= file_field :name %> OR <%= form.file_field :files, multiple: true %>
-\
+
+    <%= file_field :name %> 
+    OR
+    <%= form.file_field :files, multiple: true %>
 see views contents#_form
 
 Whitelist params in controller
-\
-:name OR name: []
-\
-see controller contents
+
+    :name  #for single file upload
+    OR 
+    name: []
+see controller contents #for multiple file upload
 
 # Attaching uploaded files to email with blob
 see playground_mailer.rb
 
 # Deleting files with purge
-content.files.purge
-\
+
+    content.files.purge
+
 see playground_mailer.rb
 
 # Configuring for Production!!
+Add to Gem file 
+
+    gem "aws-sdk-s3", require: false
+
+In production.rb, change
+
+    config.active_storage.service = :local 
+    TO
+    config.active_storage.service = :amazon
+
+Uncomment the following in storage.yml
+
+    amazon:
+      service: S3
+      access_key_id: <%= ENV['AWS_ID'] %>
+      secret_access_key: <%= ENV['AWS_SECRET'] %>
+      region: <%= ENV['AWS_REGION'] %>
+      bucket: <%= ENV['AWS_BUCKET'] %>
+
