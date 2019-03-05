@@ -1,4 +1,12 @@
 # rails-trix-playground
+https://rails-trix-playground.herokuapp.com/
+
+A playground to test out rail's trix-editor which stores rich text to database and also using rail's activestorage to upload files to email attachment.
+
+Purpose of this playground is to try out these features prior to implementing to a client's project
+
+The idea of this playground is to allow users to create custom email content and attach files from their local drives to said email.
+
 
 # Tutorials
 Trix-editor
