@@ -1,3 +1,5 @@
+<button id="body_button" class="btn-success btn">Show Trix Field Hidden Body</button>
+<br><br>
 <%= form_with(model: content, local: true) do |form| %>
     <% if content.errors.any? %>
         <div id="error_explanation">
@@ -13,16 +15,20 @@
 
     <div class="field">
         <%= form.label :subject %>
-        <%= form.text_area :subject %>
+        <%= form.text_area :subject, class:"form-control" %>
     </div>
 
     <div class="field">
         <%= form.label :attachments %>
         <%= form.file_field :files, multiple: true %>
     </div>
-    <div class="field">
-        <%= form.label :body %>
-        <%= form.text_area :body, id: :content_body, cols:"100", rows:"20", class:"d-none" %>
+    
+    
+    
+    <div class="field d-none" id="content_body">
+        <%= form.label :content_body %>
+        <small>This is going to be stored in the databse</small>
+        <%= form.text_area :body, class:"form-control" %>
     </div>
     <hr>
     <!-- Trix-editor code here -->
@@ -31,7 +37,7 @@
         <%= form.submit %>
     </div>
 <% end %>
-<button id="body_button">Show</button>
+
 <script>
     $('#body_button').on('click', () => {
         let tar = $('#content_body');

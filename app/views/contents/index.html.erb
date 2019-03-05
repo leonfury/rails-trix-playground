@@ -1,29 +1,40 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+    User Guide:
+    <ol>
+        <li>Create New Content for email</li>
+        <li>Fill up all necessary details</li>
+        <li>Note that email content will be stored as rich text format</li>
+        <li>In show content page, email to self.</li>
+        <li>Witness email in rich text format & attached file!</li>
+        <li>Yay!</li>
+    </ol>
+</p>
 <h1>Contents</h1>
+<%= link_to 'New Content', new_content_path, class:"btn btn-primary text-white" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Body</th>
-      <th>Subject</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<hr>
+<table border="1" cellpadding="20px" style="text-align: top;" width="100%">
+    <thead>
+        <tr>
+            <th width="15%">Subject</th>
+            <th width="60%">Body</th>
+            <th width="">Attachments</th>
+            <th colspan="3">Actions</th>
+        </tr>
+    </thead>
 
-  <tbody>
-    <% @contents.each do |content| %>
-      <tr>
-        <td><%= content.body %></td>
-        <td><%= content.subject %></td>
-        <td><%= link_to 'Show', content %></td>
-        <td><%= link_to 'Edit', edit_content_path(content) %></td>
-        <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+    <tbody>
+        <% @contents.each do |content| %>
+        <tr>
+            <td><%= content.subject %></td>
+            <td><%= sanitize content.body %></td>
+            <td><%= content.files.count %></td>
+            <td><%= link_to 'Show', content, class:"btn btn-success text-white" %></td>
+            <td><%= link_to 'Edit', edit_content_path(content), class:"btn btn-success text-white" %></td>
+            <td><%= link_to 'Destroy', content, method: :delete, class:"btn btn-danger text-white", data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Content', new_content_path %>
