@@ -23,3 +23,9 @@
 
 <%= link_to 'Edit', edit_content_path(@content) %> |
 <%= link_to 'Back', contents_path %>
+<br><br>
+<%= form_with url: content_mail_path(@content.id), method: :post do |f| %>
+    <%= f.label :email_to %>
+    <%= f.text_field :email %>
+    <%= f.submit %>
+<% end %>

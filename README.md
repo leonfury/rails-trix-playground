@@ -7,6 +7,8 @@ https://www.youtube.com/watch?v=eyM3_kdD-wY
 terminal -> rails g scaffold Content body:text subject:text receipient:text attachment:text
 \
 terminal -> rails g mailer Playground
+\
+terminal -> rails g job Playground
 
 # Gem Dependencies
 gem 'figaro'
