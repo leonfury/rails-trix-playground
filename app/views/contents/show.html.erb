@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <!-- trix-editor output here, add in sanitize -->
+  <%= sanitize @content.body %> 
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @content.subject %>
+</p>
+
+<p>
+  <strong>Receipient:</strong>
+  <%= @content.receipient %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= @content.attachment %>
+</p>
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>

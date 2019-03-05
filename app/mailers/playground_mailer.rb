@@ -1,0 +1,2 @@
+class PlaygroundMailer < ApplicationMailer
+end

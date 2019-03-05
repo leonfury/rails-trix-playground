@@ -1,0 +1,39 @@
+<%= form_with(model: content, local: true) do |form| %>
+    <% if content.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+            <ul>
+            <% content.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :subject %>
+        <%= form.text_area :subject %>
+    </div>
+
+    <div class="field">
+        <%= form.label :receipient %>
+        <%= form.text_area :receipient %>
+    </div>
+
+    <div class="field">
+        <%= form.label :attachment %>
+        <%= form.text_area :attachment %>
+    </div>
+
+    <div class="field">
+        <%= form.label :body %>
+        <%= form.text_area :body, id: :content_body, cols:"100", rows:"20" %>
+    </div>
+    <hr>
+    <!-- Trix-editor code here -->
+    <trix-editor input="content_body" style="width:90vw; height: 30vh;"></trix-editor>
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+<% end %>
