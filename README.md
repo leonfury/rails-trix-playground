@@ -19,6 +19,10 @@ https://www.youtube.com/watch?v=tzkezfqW8Ck
 \
 https://guides.rubyonrails.org/active_storage_overview.html
 
+Active Storage Production Configuration
+\
+https://devcenter.heroku.com/articles/active-storage-on-heroku?preview=1
+
 # Setting up
 terminal -> rails g scaffold Content body:text subject:text receipient:text attachment:text
 \
@@ -95,3 +99,5 @@ see playground_mailer.rb
 content.files.purge
 \
 see playground_mailer.rb
+
+# Configuring for Production!!
