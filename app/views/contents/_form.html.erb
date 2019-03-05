@@ -1,0 +1,44 @@
+<%= form_with(model: content, local: true) do |form| %>
+    <% if content.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+            <ul>
+            <% content.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :subject %>
+        <%= form.text_area :subject %>
+    </div>
+
+    <div class="field">
+        <%= form.label :attachments %>
+        <%= form.file_field :files, multiple: true %>
+    </div>
+    <div class="field">
+        <%= form.label :body %>
+        <%= form.text_area :body, id: :content_body, cols:"100", rows:"20", class:"d-none" %>
+    </div>
+    <hr>
+    <!-- Trix-editor code here -->
+    <trix-editor input="content_body" style="width:90vw; height: 30vh;"></trix-editor>
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+<% end %>
+<button id="body_button">Show</button>
+<script>
+    $('#body_button').on('click', () => {
+        let tar = $('#content_body');
+        if (tar.hasClass('d-none') == true) {
+            tar.removeClass('d-none');
+        } else {
+            tar.addClass('d-none');
+        }
+    })
+</script>

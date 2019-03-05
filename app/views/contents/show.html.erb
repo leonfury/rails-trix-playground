@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <!-- trix-editor output here, add in sanitize -->
+  <%= sanitize @content.body %> 
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @content.subject %>
+</p>
+
+<p>
+    <strong>Attachment:</strong>
+    <%#= link_to "Download", @content.file, download: "" %>
+    <% @content.files.each do |f| %>
+        <%= link_to "#{f.blob.filename}", f.blob.download, download: "" %>
+    <% end %>
+</p>
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>
+<br><br>
+<%= form_with url: content_mail_path(@content.id), method: :post do |f| %>
+    <%= f.label :email_to %>
+    <%= f.text_field :email %>
+    <%= f.submit %>
+<% end %>
