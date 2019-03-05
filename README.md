@@ -42,7 +42,6 @@ Add to app/assets/stylesheets/application.css
 
 Add to app/assets/javascripts/application.js
 \
-
 //= require trix
 
 # Creation Setup
