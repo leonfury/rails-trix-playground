@@ -17,18 +17,12 @@
     </div>
 
     <div class="field">
-        <%= form.label :receipient %>
-        <%= form.text_area :receipient %>
+        <%= form.label :attachments %>
+        <%= form.file_field :files, multiple: true %>
     </div>
-
-    <div class="field">
-        <%= form.label :attachment %>
-        <%= form.text_area :attachment %>
-    </div>
-
     <div class="field">
         <%= form.label :body %>
-        <%= form.text_area :body, id: :content_body, cols:"100", rows:"20" %>
+        <%= form.text_area :body, id: :content_body, cols:"100", rows:"20", class:"d-none" %>
     </div>
     <hr>
     <!-- Trix-editor code here -->
@@ -37,3 +31,14 @@
         <%= form.submit %>
     </div>
 <% end %>
+<button id="body_button">Show</button>
+<script>
+    $('#body_button').on('click', () => {
+        let tar = $('#content_body');
+        if (tar.hasClass('d-none') == true) {
+            tar.removeClass('d-none');
+        } else {
+            tar.addClass('d-none');
+        }
+    })
+</script>

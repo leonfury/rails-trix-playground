@@ -12,13 +12,11 @@
 </p>
 
 <p>
-  <strong>Receipient:</strong>
-  <%= @content.receipient %>
-</p>
-
-<p>
-  <strong>Attachment:</strong>
-  <%= @content.attachment %>
+    <strong>Attachment:</strong>
+    <%#= link_to "Download", @content.file, download: "" %>
+    <% @content.files.each do |f| %>
+        <%= link_to "#{f.blob.filename}", f.blob.download, download: "" %>
+    <% end %>
 </p>
 
 <%= link_to 'Edit', edit_content_path(@content) %> |
