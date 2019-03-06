@@ -23,16 +23,14 @@
         <%= form.file_field :files, multiple: true %>
     </div>
     
-    
-    
     <div class="field d-none" id="content_body">
         <%= form.label :content_body %>
         <small>This is going to be stored in the databse</small>
-        <%= form.text_area :body, class:"form-control" %>
+        <%= form.text_area :body, class:"form-control", id: :input_content %>
     </div>
     <hr>
     <!-- Trix-editor code here -->
-    <trix-editor input="content_body" style="width:90vw; height: 30vh;"></trix-editor>
+    <trix-editor input="input_content" style="width:90vw; height: 30vh;"></trix-editor>
     <div class="actions">
         <%= form.submit %>
     </div>
