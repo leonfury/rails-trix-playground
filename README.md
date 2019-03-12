@@ -51,7 +51,8 @@ See viewfile contents#_form
 \
 Add to view file
 
-<trix-editor input="content_body"></trix-editor>
+    <trix-editor input="content_body"></trix-editor>
+
 where input is the id of the form input field
 
 
