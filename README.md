@@ -76,7 +76,7 @@ Add to model file
 
     has_one_attached :name
     OR 
-    has_many_attached :name
+    has_many_attached :names
 
 where name can be anything
 \
@@ -86,7 +86,7 @@ Add to view file for file uploading
 
     <%= file_field :name %> 
     OR
-    <%= form.file_field :files, multiple: true %>
+    <%= form.file_field :names, multiple: true %>
 see views contents#_form
 
 Whitelist params in controller
