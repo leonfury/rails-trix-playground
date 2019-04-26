@@ -23,6 +23,10 @@ Active Storage Production Configuration
 \
 https://devcenter.heroku.com/articles/active-storage-on-heroku?preview=1
 
+Customisation
+\
+https://jsfiddle.net/javan/egg7fgvv/
+
 # Setting up
 Run on terminal
 
@@ -51,8 +55,12 @@ See viewfile contents#_form
 \
 Add to view file
 
+<<<<<<< HEAD
     <trix-editor input="content_body"></trix-editor>
 
+=======
+<trix-editor input="content_body"></trix-editor>
+>>>>>>> 3ee30ef3e3a121be79f1ae80a8dc35e0dd52bb1d
 where input is the id of the form input field
 
 

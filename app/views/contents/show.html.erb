@@ -3,7 +3,7 @@
 <p>
   <strong>Body:</strong>
   <!-- trix-editor output here, add in sanitize -->
-  <%= sanitize @content.body %> 
+  <%= sanitize @content.body, attributes: %w(style) %> 
 </p>
 
 <p>
