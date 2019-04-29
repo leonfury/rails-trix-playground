@@ -28,7 +28,9 @@
         <% @contents.each do |content| %>
         <tr>
             <td><%= content.subject %></td>
-            <td><%= sanitize content.body, attributes: %w(style) %></td>
+            <td>
+                <%= sanitize content.body, attributes: %w(style src), tags: ['figcaption', 'img', 'div', 'a', 'p', 'span', 'ol', 'ul', 'li', 'br', 'strong', 'em', 'del', 'figure'] %> 
+            </td>
             <td><%= content.files.count %></td>
             <td><%= link_to 'Show', content, class:"btn btn-success text-white" %></td>
             <td><%= link_to 'Edit', edit_content_path(content), class:"btn btn-success text-white" %></td>

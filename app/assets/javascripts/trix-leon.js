@@ -64,7 +64,8 @@ function uploadAttachment(attachment) {
             console.log(data);
             return attachment.setAttributes({
                 url: data.image_url,
-                href: data.image_url,
+                image_id: data.image_id,
+                // href: data.image_url,
             })
         }
     }
@@ -77,3 +78,26 @@ document.addEventListener("trix-attachment-add", (e) => {
         return uploadAttachment(attachment);
     }
 });
+
+document.addEventListener("trix-attachment-remove", (e) => {
+    console.log('bazinga');
+    var image_id = e.attachment.attachment.attributes.array[9];
+    var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
+    var bookings = {};
+    bookings["authenticity_token"] = AUTH_TOKEN;
+
+    $.ajax({
+        url: `/photos_delete/${image_id}`,
+        method: "POST",
+        data: bookings,
+        dataType: "JSON",
+        success: function(){
+            console.log('photo delete success');
+        },
+        error: function(error){
+            console.log('photo delete Error');
+            console.log(error);
+        }
+    });
+
+})

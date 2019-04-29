@@ -3,7 +3,7 @@
     <strong>Body:</strong>
     <!-- trix-editor output here, add in sanitize -->
     <div class="sanitize_body">
-        <%= sanitize @content.body, attributes: %w(style src), tags: ['figcaption', 'img', 'div', 'a', 'p', 'span', 'ol', 'ul', 'li', 'br', 'strong', 'em', 'del'] %> 
+        <%= sanitize @content.body, attributes: %w(style src), tags: ['figcaption', 'img', 'div', 'a', 'p', 'span', 'ol', 'ul', 'li', 'br', 'strong', 'em', 'del', 'figure'] %> 
     </div>
 </p>
 
