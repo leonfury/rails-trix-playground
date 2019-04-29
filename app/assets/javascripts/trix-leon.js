@@ -41,4 +41,39 @@ addEventListener("trix-initialize", function(event) {
     
     var textHTML = '<button type="button" data-trix-attribute="underline" style="text-decoration: underline; padding: 0px 10px">U</button>';
     event.target.toolbarElement.querySelector(".button_group.text_tools").insertAdjacentHTML("afterbegin", textHTML);
-})
+});
+
+function uploadAttachment(attachment) {
+    var file = attachment.file;
+    var form = new FormData;
+    form.append("Content-Type", file.type);
+    form.append("photo[image]", file); // file field upload params!!
+    
+    var xhr = new XMLHttpRequest;
+    xhr.open("POST", "/photos.json", true);
+    xhr.setRequestHeader("X-CSRF-Token", Rails.csrfToken()); //for validation
+
+    xhr.upload.onprogress = function(e) {
+        var progress = e.loaded / e.total * 100;
+        attachment.setUploadProgress(progress); 
+    }
+
+    xhr.onload = function() {
+        if (xhr.status === 201) {
+            var data = JSON.parse(xhr.responseText);
+            console.log(data);
+            return attachment.setAttributes({
+                url: data.image_url,
+                href: data.image_url,
+            })
+        }
+    }
+    return xhr.send(form);
+}
+
+document.addEventListener("trix-attachment-add", (e) => {
+    var attachment = e.attachment;
+    if (attachment.file) {
+        return uploadAttachment(attachment);
+    }
+});

@@ -133,3 +133,15 @@ Uncomment the following in storage.yml
       region: <%= ENV['AWS_REGION'] %>
       bucket: <%= ENV['AWS_BUCKET'] %>
 
+===============================================================================
+Photo Upload
+terminal -> rails g scaffold Photo image_data:text
+photos_controller -> strong params -> image_data to image
+photo.rb -> has_one_attached :image
+photos#_form -> <%= form.file_field :image %>
+
+test upload
+
+trix JS-upload async
+
+photos#jbuilderSS -> 

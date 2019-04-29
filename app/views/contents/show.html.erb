@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Body:</strong>
-  <!-- trix-editor output here, add in sanitize -->
-  <%= sanitize @content.body, attributes: %w(style) %> 
+    <strong>Body:</strong>
+    <!-- trix-editor output here, add in sanitize -->
+    <div class="sanitize_body">
+        <%= sanitize @content.body, attributes: %w(style src), tags: ['figcaption', 'img', 'div', 'a', 'p', 'span', 'ol', 'ul', 'li', 'br', 'strong', 'em', 'del'] %> 
+    </div>
 </p>
 
 <p>
