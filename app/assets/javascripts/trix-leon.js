@@ -22,6 +22,7 @@ Trix.config.textAttributes.default = { style: { color: "" }, parser: function(el
 // Trix.config.textAttributes.comic = { style: { fontFamily: "Comic Sans MS" }, parser: function(element) { return element.style.fontFamily.match(/Comic Sans MS/) }, inheritable: true }
 Trix.config.textAttributes.underline = { style: { textDecoration: "underline" }, parser: function(element) { return element.style.textDecoration === "underline" }, inheritable: false }
 
+
 addEventListener("trix-initialize", function(event) {  
     var colorHTML = '<div class="trix_leon">Font color: ';
     colorHTML += '<button type="button" data-trix-attribute="default" class="trix_buttons_leon" style="background-color: white; color: black;">None</button>';     
@@ -47,10 +48,10 @@ function uploadAttachment(attachment) {
     var file = attachment.file;
     var form = new FormData;
     form.append("Content-Type", file.type);
-    form.append("photo[image]", file); // file field upload params!!
+    form.append("photo[image]", file); //*** EDIT file field upload params!!
     
     var xhr = new XMLHttpRequest;
-    xhr.open("POST", "/photos.json", true);
+    xhr.open("POST", "/photos.json", true); //*** EDIT PATH CREATE.JSON
     xhr.setRequestHeader("X-CSRF-Token", Rails.csrfToken()); //for validation
 
     xhr.upload.onprogress = function(e) {
@@ -80,16 +81,16 @@ document.addEventListener("trix-attachment-add", (e) => {
 });
 
 document.addEventListener("trix-attachment-remove", (e) => {
-    console.log('bazinga');
-    var image_id = e.attachment.attachment.attributes.array[9];
+    var image_id = e.attachment.attachment.attributes.array[9]; // ENSURE IS IMAGE ID
     var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
-    var bookings = {};
-    bookings["authenticity_token"] = AUTH_TOKEN;
+    var send_package = {};
+    send_package["authenticity_token"] = AUTH_TOKEN;
 
+    // ENSURE DELETE PATHWAY
     $.ajax({
         url: `/photos_delete/${image_id}`,
         method: "POST",
-        data: bookings,
+        data: send_package,
         dataType: "JSON",
         success: function(){
             console.log('photo delete success');

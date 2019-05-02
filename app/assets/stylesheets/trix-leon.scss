@@ -15,3 +15,12 @@
 // trix-toolbar .trix_leon button[data-trix-attribute=orange] {
 //     color: orange;
 // }
+
+.sanitize_body {
+}
+
+.sanitize_body img, .sanitize_body figcaption {
+    margin: auto;
+    display: block;
+    text-align: center;
+}
